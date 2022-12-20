@@ -37,6 +37,9 @@ class Accent:
         This is user-defined based on context.
     descriptors: list of AccentDescriptor objects
         A list of AccentDescriptor objects describing the accent.
+    predetermined: Boolean
+        Whether the accent was predetermined in the data contributor's Common Voice profile. 
+        False indicates the accent is self-specified. 
 
 
     Attributes
@@ -53,12 +56,73 @@ class Accent:
     __version__ = 0.1
 
     def __init__(self, id=0, name="Accent Name", count=0, locale=None, descriptors=None, predetermined=False):
-        self.id = id
-        self.name = name
-        self.count = count
-        self.locale = locale
-        self.descriptors = descriptors
-        self.predetermined = predetermined
+        self._id = id
+        self._name = name
+        self._count = count 
+        self._locale = locale 
+        self._descriptors = descriptors 
+        self._predetermined = predetermined
+        
+        
+    @property
+    def id(self):
+        return self._id
+    
+    @property
+    def name(self):
+        return self._name
+    
+    @property
+    def count(self):
+        return self._count
+    
+    @property
+    def locale(self):
+        return self._locale
+    
+    @property
+    def descriptors(self):
+        return self._descriptors
+    
+    @property
+    def predetermined(self):
+        return self.predetermined
+    
+    @id.setter
+    def id(self, value):
+        # TODO put a check in here to make sure it is an integer
+        self._id = value
+        
+    @name.setter
+    def name(self, value):
+        # TODO put a check in here to make sure it is a string
+        self._name = value
+        
+    @count.setter
+    def count(self, value):
+        #TODO put a check in here to make sure it is an integer
+        self._count = value
+        
+    @count.setter
+    def locale(self, value):
+        # TODO put a check in here to make sure it is a string
+        # I don't want to restrict it to say ISO-639 values
+        # because the user may want to implement locale as say BCP-47
+        self._locale = value
+        
+    @count.setter
+    def descriptors(self, value):
+        # TODO put a check in here to make sure it is a list of AccentDescriptor objects
+        self._descriptors = value
+        
+    @count.setter
+    def predetermined(self, value):
+        # TODO put a check in here to make sure it is a Boolean value 
+        self._predetermined = value
+        
+        
+        
+        
 
     """
     Return a human-readable string representation of the object's values. 
@@ -76,8 +140,23 @@ class Accent:
     """
 
     def __str__(self):
-        return f"id is {self.id}, name is {self.name}, count is {self.count}, locale is {self.locale}, descriptors are {self.descriptors}, predetermined is {self.predetermined}."
-
+        string = f"id is {self._id}, name is {self._name}, count is {self._count}, locale is {self._locale}, descriptors are {self._descriptors}, predetermined is {self._predetermined}."
+        return string
+    
+    def updateStatus(self, status): 
+        """
+        Update predetermined_status
+        """
+    
+        try: 
+            self._predetermined = status
+        except Exception as e:
+            print(e) 
+            print('Something went wrong in updateStatus')
+            return False
+        else: 
+            return True
+          
 
 class AccentDescriptor:
     """
@@ -96,9 +175,9 @@ class AccentDescriptor:
     definition: string
         A text definition of the AccentDescriptor and how it should be applied,
         which is user-defined, such as from Mozilla CV data
-    category: string
-        A text category of the AccentDescriptor, which is user-defined,
-        and may be, for example, a linguistic category such as 'Rhoticity'.
+    parent: integer 
+        An id of another category that allows for parent-child relationships. 
+        None if the Category is itself a parent. 
 
 
     Attributes
@@ -107,19 +186,58 @@ class AccentDescriptor:
     """
 
     # class attributes
+    # None
 
-    def __init__(self, id, name, definition, category):
-        self.id = id
-        self.name = name
-        self.definition = definition
-        self.category = category
-
+    def __init__(self, id, name, definition, parent):
+        self._id = id
+        self._name = name
+        self._definition = definition
+        self._parent = parent 
+        
+        
+    @property
+    def id(self):
+        return self._id
+    
+    @property
+    def name(self):
+        return self._name
+    
+    @property
+    def definition(self):
+        return self._definition
+    
+    @property
+    def parent(self):
+        return self._parent
+    
+    @id.setter
+    def id(self, value):
+        # TODO put a check in here to make sure it is an integer
+        self._id = value
+        
+    @name.setter
+    def name(self, value):
+        # TODO put a check in here to make sure it is a string
+        self._name = value
+        
+    @definition.setter
+    def definition(self, value):
+        #TODO put a check in here to make sure it is an string
+        self._definition = value
+        
+    @parent.setter
+    def parent(self, value):
+        # TODO put a check in here to make sure it is an integer
+        self._parent = value
+        
     """
     Define a __str__ function to aid with debugging
     """
 
     def __str__(self):
-        return f"id is {self.id}, name is {self.name}, definition is {self.definition}, category is {self.category}"
+        return f"id is {self._id}, name is {self._name}, definition is {self._definition}, parent is {self._parent}" 
+
     
 class AccentCollection: 
     """
@@ -143,8 +261,15 @@ class AccentCollection:
         self.AccentDict = AccentDict
         
     def __str__(self): 
+        
+        str_list = []
+        
         for accent in self.AccentDict.items(): 
-            print(accent[1].__str__()) # this leverages the __str__ method of Accent class
+            str_list.append(accent[1].__str__())
+            
+        string = (' '.join(str_list))
+
+        return (string)
     
     def total(self): 
         return len(self.AccentDict)
@@ -152,7 +277,45 @@ class AccentCollection:
     def sortByCount(self, reverse=True): 
         return dict(sorted(self.AccentDict.items(), key=lambda t:(t[1].count, t[1].name), reverse=reverse))
     
-    def dummy(self):
-        return "dummy function"
+    
+    """
+    Return a human-readable string representation of the object's values. 
 
+    Parameters
+    ----------
+    
+    predetermined_accents_list: list
+        A list of strings representing the accents that should be marked as predetermined
+
+    Raises
+    ------
+
+
+    Returns
+    -------
+    Boolean
+        True on success
+        False on failure
+    """
+    def updatePredeterminedStatus(self, predetermined_accents_list, status=True): 
+        
+        try: 
+            for accent in self.AccentDict.items(): 
+                print(accent)
+                print(accent[0])
+    
+                for predetermined_accent in predetermined_accents_list: 
+        
+                    if (predetermined_accent == accent[1].name) :
+                        accent[1].updateStatus(status)
+                        print ('changed ', accent[1], 'status to ', status)
+                        # else do nothing - we don't want to update the predetermined_status of any other accents 
+                        
+            return True
+        
+        except Exception as e:
+            print(e) 
+            print('Something went wrong in updatePredeterminedStatus')
+            return False
+    
   
