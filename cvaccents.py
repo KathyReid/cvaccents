@@ -277,6 +277,13 @@ class AccentCollection:
     def sortByCount(self, reverse=True): 
         return dict(sorted(self.AccentDict.items(), key=lambda t:(t[1].count, t[1].name), reverse=reverse))
     
+    def items(self): 
+        """
+        Allows the Collection to be iterated like a Dict
+        """ 
+        return self.AccentDict.items()
+        
+    
     
     """
     Return a human-readable string representation of the object's values. 
