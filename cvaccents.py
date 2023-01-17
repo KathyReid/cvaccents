@@ -334,6 +334,70 @@ class AccentCollection:
             print("Something went wrong in reportNoneAccentDescriptors")
             return False
 
+    def reportPredeterminedAccents(self):
+        """
+        returns a list of predetermined Accents and their count of Accents in the AccentCollection 
+        TODO: I feel like there must be a simpler way to get this information from the AccentCollection class
+        """
+
+        try:
+            predetermined_accents = []
+
+            for idx, accent in enumerate(self.AccentDict.items()):
+                if (accent[1]._predetermined):
+                    predetermined_accents.append([accent[1]._name, accent[1]._count])   
+                    
+            # order list by count 
+            predetermined_accents.sort(key = lambda a: a[1], reverse=True) 
+            return predetermined_accents
+
+        except Exception as e:
+            print(e)
+            print("Something went wrong in reportPredeterminedAccents")
+            return False
+        
+    def reportAccentDescriptorCategories(self): 
+        """
+        returns a list of AccentDescriptor categories and their count of Accents in the AccentCollection 
+        
+        TODO: I think there's probably an easier way to do this too
+        """
+        
+        try:
+            accent_category_counts = []
+
+            for idx, accent in enumerate(self.AccentDict.items()):
+                for idxd, descriptor in enumerate(accent[1]._descriptors): 
+                    
+                    # check if this Accent Descriptor is already in accent_category_counts
+                    # if not, add it, if so, increment the count 
+                    match = False
+                    index = None 
+                    
+                    for idxc, accent_category in enumerate(accent_category_counts): 
+                        if accent_category[0] == descriptor._name: 
+                            match = True 
+                            index = idxc
+                   
+                    if match: 
+                        accent_category_counts[index][1] +=1
+                    else: 
+                        accent_category_counts.append([descriptor._name, 1])
+                        
+                        
+            # order list by count 
+            accent_category_counts.sort(key = lambda a: a[1], reverse=True) 
+            
+            return accent_category_counts
+
+        except Exception as e:
+            print(e)
+            print("Something went wrong in reportAccentDescriptorCategories")
+            return False
+        
+        
+        
+
     def exportJSON(self, filePath):
         """
         Dump the AccentDict to JSON
@@ -351,10 +415,11 @@ class AccentCollection:
                 json.dump(self.AccentDict, outfile, cls=AccentEncoder)
             return True
 
+
 class AccentEncoder(json.JSONEncoder):
     def default(self, obj):
-        if (isinstance(obj, Accent)):
-            
+        if isinstance(obj, Accent):
+
             # call out to a private method
             # otherwise the encoder doesn't know how to handle the AccentDescripor object
             accentDescriptors = AccentEncoder._encodeAccentDescriptor(obj._descriptors)
@@ -365,32 +430,27 @@ class AccentEncoder(json.JSONEncoder):
                 "count": obj._count,
                 "locale": obj._locale,
                 "descriptors": accentDescriptors,
-                "predetermined": obj._predetermined
-            }            
+                "predetermined": obj._predetermined,
+            }
             return data
         else:
             type_name = obj.__class__.__name__
             raise TypeError(f"Unexpected type {type_name}")
 
         return json.JSONEncoder.default(self, obj)
-                
-    def _encodeAccentDescriptor(descriptors): 
-        # descriptors should be a list of AccentDescriptor objects 
-        for descriptor in descriptors: 
+
+    def _encodeAccentDescriptor(descriptors):
+        # descriptors should be a list of AccentDescriptor objects
+        for descriptor in descriptors:
             data = {}
-            if (isinstance(descriptor, AccentDescriptor)):
-                data[descriptor._id]  = {
+            if isinstance(descriptor, AccentDescriptor):
+                data[descriptor._id] = {
                     "id": descriptor._id,
                     "name": descriptor._name,
                     "definition": descriptor._definition,
-                    "parent": descriptor._parent
+                    "parent": descriptor._parent,
                 }
             else:
                 type_name = descriptors.__class__.__name__
                 raise TypeError(f"Unexpected type {type_name}")
         return data
-
-        
-                
-        
-    
