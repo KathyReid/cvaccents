@@ -66,3 +66,7 @@ jupyter notebook
 ## Citing this toolset 
 
 TODO: Put the `.bib` for the paper here when it is published. 
+
+## License 
+
+These tools use the Mozilla Public License (MPL) to align with Mozilla's broader ecosystem.
