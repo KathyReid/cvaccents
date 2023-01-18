@@ -11,7 +11,7 @@ However, this change presents challenges to ML practitioners and those using acc
 The tools here include: 
 
 * `cvaccents.py` - a set of Python classes to represent `Accent`, `AccentCollection` and `AccentDescriptor`
-* `MCV-get-demographic-details-from-dataset-11.ipynb` - a Jupyter notebook that provides a worked example of extracting AccentDescriptor information and applying heuristics with `cyvaccents.py`. The heuristics apply to the English corpus, and could easily be extended for future Mozilla Common voice accent releases, or adapted to apply to one of the other 100+ languages in the Common Voice project. 
+* `MCV-get-demographic-details-from-dataset-11.ipynb` - a Jupyter notebook that provides a worked example of extracting AccentDescriptor information and applying heuristics with `cyvaccents.py`. The heuristics apply to the English corpus, and could easily be extended for future Mozilla Common voice accent releases, or adapted to apply to one of the other 100+ languages in the Common Voice project. This notebook _also_ creates nodes and edges `JSON` files suitable for data visualisation in network diagrams, [as shown here](https://observablehq.com/@kathyreid/phd-mozilla-cv-accent-relationships). 
 
 TODO: The Jupyter notebook should be renamed to something more user friendly 
 TODO: The Jupyter notebook has a lot of "working out" cruft that needs to be removed, but while the paper is being reviewed and revised I might still need it... 
