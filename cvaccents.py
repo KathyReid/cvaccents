@@ -336,7 +336,7 @@ class AccentCollection:
 
     def reportPredeterminedAccents(self):
         """
-        returns a list of predetermined Accents and their count of Accents in the AccentCollection 
+        returns a list of predetermined Accents and their count of Accents in the AccentCollection
         TODO: I feel like there must be a simpler way to get this information from the AccentCollection class
         """
 
@@ -344,59 +344,78 @@ class AccentCollection:
             predetermined_accents = []
 
             for idx, accent in enumerate(self.AccentDict.items()):
-                if (accent[1]._predetermined):
-                    predetermined_accents.append([accent[1]._name, accent[1]._count])   
-                    
-            # order list by count 
-            predetermined_accents.sort(key = lambda a: a[1], reverse=True) 
+                if accent[1]._predetermined:
+                    predetermined_accents.append([accent[1]._name, accent[1]._count])
+
+            # order list by count
+            predetermined_accents.sort(key=lambda a: a[1], reverse=True)
             return predetermined_accents
 
         except Exception as e:
             print(e)
             print("Something went wrong in reportPredeterminedAccents")
             return False
-        
-    def reportAccentDescriptorCategories(self): 
+
+    def reportMultipleAccentDescriptors(self):
         """
-        returns a list of AccentDescriptor categories and their count of Accents in the AccentCollection 
-        
+        returns a list of Accent objects where the Accent object has > 1 Accent Descriptors
+        This is to identify Accents that are described in multiple ways, e.g. "Kiwi" or "Received Pronunciation"
+        TODO: I feel like there must be a simpler way to get this information from the AccentCollection class
+        """
+
+        try:
+            multipleAccentDescriptors = []
+
+            for idx, accent in enumerate(self.AccentDict.items()):
+                if (len(accent[1]._descriptors) > 1):
+                    print("more than two descriptors for: ", accent[1]._name)
+                    multipleAccentDescriptors.append(accent)
+
+            # no need to order the Dict
+            return multipleAccentDescriptors
+
+        except Exception as e:
+            print(e)
+            print("Something went wrong in reportMultipleAccentDescriptors")
+            return False
+
+    def reportAccentDescriptorCategories(self):
+        """
+        returns a list of AccentDescriptor categories and their count of Accents in the AccentCollection
+
         TODO: I think there's probably an easier way to do this too
         """
-        
+
         try:
             accent_category_counts = []
 
             for idx, accent in enumerate(self.AccentDict.items()):
-                for idxd, descriptor in enumerate(accent[1]._descriptors): 
-                    
+                for idxd, descriptor in enumerate(accent[1]._descriptors):
+
                     # check if this Accent Descriptor is already in accent_category_counts
-                    # if not, add it, if so, increment the count 
+                    # if not, add it, if so, increment the count
                     match = False
-                    index = None 
-                    
-                    for idxc, accent_category in enumerate(accent_category_counts): 
-                        if accent_category[0] == descriptor._name: 
-                            match = True 
+                    index = None
+
+                    for idxc, accent_category in enumerate(accent_category_counts):
+                        if accent_category[0] == descriptor._name:
+                            match = True
                             index = idxc
-                   
-                    if match: 
-                        accent_category_counts[index][1] +=1
-                    else: 
+
+                    if match:
+                        accent_category_counts[index][1] += 1
+                    else:
                         accent_category_counts.append([descriptor._name, 1])
-                        
-                        
-            # order list by count 
-            accent_category_counts.sort(key = lambda a: a[1], reverse=True) 
-            
+
+            # order list by count
+            accent_category_counts.sort(key=lambda a: a[1], reverse=True)
+
             return accent_category_counts
 
         except Exception as e:
             print(e)
             print("Something went wrong in reportAccentDescriptorCategories")
             return False
-        
-        
-        
 
     def exportJSON(self, filePath):
         """
