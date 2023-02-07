@@ -63,8 +63,6 @@ jupyter notebook
 ## Citing this toolset 
 
 ```
-BibTeX does not have the right entry for preprints. This is a hack for producing the correct reference:
-
 @Booklet{EasyChair:9678,
   author = {Kathy Reid and Elizabeth T. Williams},
   title = {Common Voice and Accent Choice: Data Contributors Self-Describe Their Spoken Accents in Diverse Ways},
