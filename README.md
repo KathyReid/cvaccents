@@ -18,25 +18,24 @@ TODO: The Jupyter notebook has a lot of "working out" cruft that needs to be rem
 
 The `MCV-get-demographic-details-from-dataset-11.ipynb` notebook provides the following taxonomy of Accent Descriptors. Practitioners may wish to extend this taxonomy for their own purposes, or may use this taxonomy as a structure with which to assess voice datasets or models for _accent bias_. 
 
-| Taxonomic category | Count | No. of _a priori_ descriptors | Percentage of total |
-|---|---|---|---|
-| Geographic descriptors | 113 | 16 | 65.32\% |
-|   - Supranational region | 15 | 4 | 8.67\% |
-|   - Country | 42 | 12 | 24.28\% |
-|   - Subnational region | 45 | - | 26.01\% |
-|   - }City | 10 | - | 5.78\% |
-|   - Other | 1 | - | 0.58\% |
-| Register | 17 | - | 9.83\% |
-| First or other language marker | 13 | - | 7.51\% |
-| Accent strength descriptor | 11 | - | 6.36\% |
-| Phonetic descriptors | 5 | - | 2.89\% |
-|   - Specific phonetic changes | 3 | - | 1.73\% |
-|   - Rhoticity | 1 | - | 0.58\% |
-|   - Inflection | 1 | - | 0.58\% |
-| Vocal quality descriptor | 7 | - | 4.05\% |
-| Mixed or variable accent | 5 | - | 2.89\% |
-| Uncertainty marker | 1 | - | 0.58\% |
-| Accent effects due to physical change | 1 | - | 0.58\% |
+| Taxonomic category | 
+| Geographic descriptors |
+|   - Supranational region ||
+|   - Country |
+|   - Subnational region |
+|   - City | 
+|   - Other | 
+| Register | 
+| First or other language marker | 
+| Accent strength descriptor | 
+| Phonetic descriptors | 
+|   - Specific phonetic changes | 
+|   - Rhoticity |
+|   - Inflection |
+| Vocal quality descriptor | 
+| Mixed or variable accent | 
+| Uncertainty marker |
+| Accent effects due to physical change |
 
 ### Instructions for use 
 
