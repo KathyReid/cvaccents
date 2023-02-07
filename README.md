@@ -63,7 +63,21 @@ jupyter notebook
 
 ## Citing this toolset 
 
-TODO: Put the `.bib` for the paper here when it is published. 
+```
+BibTeX does not have the right entry for preprints. This is a hack for producing the correct reference:
+
+@Booklet{EasyChair:9678,
+  author = {Kathy Reid and Elizabeth T. Williams},
+  title = {Common Voice and Accent Choice: Data Contributors Self-Describe Their Spoken Accents in Diverse Ways},
+  howpublished = {EasyChair Preprint no. 9678},
+
+  year = {EasyChair, 2023}}
+
+```
+
+[https://easychair.org/publications/preprint/gFLz](https://easychair.org/publications/preprint/gFLz)
+
+
 
 ## License 
 
