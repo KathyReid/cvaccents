@@ -17,8 +17,9 @@ The tools here include:
 
 The `cvaccents-v13.ipynb` notebook provides the following taxonomy of Accent Descriptors. Practitioners may wish to extend this taxonomy for their own purposes, or may use this taxonomy as a structure with which to assess voice datasets or models for _accent bias_. 
 
-| Taxonomic category | 
-| Geographic descriptors |
+| Taxonomic category | Count |
+|--------------------:|:-------|
+| Geographic descriptors | |
 |   - Supranational region | 20 |
 |   - Country | 50 |
 |   - Subnational region | 76 |
@@ -27,7 +28,7 @@ The `cvaccents-v13.ipynb` notebook provides the following taxonomy of Accent Des
 | Register | 12 | 
 | First or other language marker | 13 | 
 | Accent strength descriptor | 14 | 
-| Phonetic descriptors | 
+| Phonetic descriptors | |
 |   - Specific phonetic changes | 3 |
 |   - Rhoticity | 1 | 
 |   - Inflection | 1 | 
