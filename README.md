@@ -9,33 +9,37 @@ However, this change presents challenges to ML practitioners and those using acc
 The tools here include: 
 
 * `cvaccents.py` - a set of Python classes to represent `Accent`, `AccentCollection` and `AccentDescriptor`
-* `MCV-get-demographic-details-from-dataset-11.ipynb` - a Jupyter notebook that provides a worked example of extracting AccentDescriptor information and applying heuristics with `cyvaccents.py`. The heuristics apply to v11 of the Mozilla Common Voice English corpus, and could easily be extended for future Mozilla Common voice accent releases, or adapted to apply to one of the other 100+ languages in the Common Voice project. This notebook _also_ creates nodes and edges `JSON` files suitable for data visualisation in network diagrams, [as shown here](https://observablehq.com/@kathyreid/phd-mozilla-cv-accent-relationships). 
+* `cvaccents-v{version}` -  Jupyter notebook that provides a worked example of extracting AccentDescriptor information and applying heuristics with `cyvaccents.py`. This notebook _also_ creates nodes and edges `JSON` files suitable for data visualisation in network diagrams, [as shown here](https://observablehq.com/@kathyreid/phd-mozilla-cv-accent-relationships-v13). 
 
-TODO: The Jupyter notebook should be renamed to something more user friendly 
-TODO: The Jupyter notebook has a lot of "working out" cruft that needs to be removed, but while the paper is being reviewed and revised I might still need it... 
+
 
 ## Accent taxonomy provided for English 
 
-The `MCV-get-demographic-details-from-dataset-11.ipynb` notebook provides the following taxonomy of Accent Descriptors. Practitioners may wish to extend this taxonomy for their own purposes, or may use this taxonomy as a structure with which to assess voice datasets or models for _accent bias_. 
+The `cvaccents-v13.ipynb` notebook provides the following taxonomy of Accent Descriptors. Practitioners may wish to extend this taxonomy for their own purposes, or may use this taxonomy as a structure with which to assess voice datasets or models for _accent bias_. 
 
-| Taxonomic category | 
-| Geographic descriptors |
-|   - Supranational region ||
-|   - Country |
-|   - Subnational region |
-|   - City | 
-|   - Other | 
-| Register | 
-| First or other language marker | 
-| Accent strength descriptor | 
-| Phonetic descriptors | 
-|   - Specific phonetic changes | 
-|   - Rhoticity |
-|   - Inflection |
-| Vocal quality descriptor | 
-| Mixed or variable accent | 
-| Uncertainty marker |
-| Accent effects due to physical change |
+| Taxonomic category | Count |
+|--------------------:|:-------|
+| Geographic descriptors | |
+|   - Supranational region | 20 |
+|   - Country | 50 |
+|   - Subnational region | 76 |
+|   - City | 20 |
+|   - Other | 1 | 
+| Register | 12 | 
+| First or other language marker | 13 | 
+| Accent strength descriptor | 14 | 
+| Phonetic descriptors | |
+|   - Specific phonetic changes | 3 |
+|   - Rhoticity | 1 | 
+|   - Inflection | 1 | 
+| Vocal quality descriptor | 10 | 
+| Mixed or variable accent | 4 | 
+| Uncertainty marker | 1 | 
+| Accent effects due to physical change | 1 |
+
+### Visualisation of accent relationships 
+
+![Visualisation of accents in MCV v13 English dataset](images/v13-accent-map.png "Visualisation of accents in MCV v13 English dataset")
 
 ### Instructions for use 
 
@@ -74,8 +78,29 @@ jupyter notebook
 
 [https://easychair.org/publications/preprint/gFLz](https://easychair.org/publications/preprint/gFLz)
 
-
-
 ## License 
 
 These tools use the Mozilla Public License (MPL) to align with Mozilla's broader ecosystem.
+
+## Change Log 
+
+### 0.1 Initial release using v.11 of the Mozilla Common Voice `en` dataset
+
+* 16 categories identified 
+* 164 individual accents identified 
+* 297 relationships between accents identified 
+
+[Related data visualisation on the Observable platform](https://observablehq.com/@kathyreid/phd-mozilla-cv-accent-relationships)
+
+### 0.2 Updated for v.13 of the Mozilla Common Voice `en` dataset
+
+The key changes in this version are: 
+
+* The number of categories identified in the data have increased from 16 in the first version, to 20 in this one. The four additional categories are:
+  - _Linguistic heritage of speaker_ - indicating the speaker's language acquisition or immersion heritage, such as time spent in a location, or being born or raised in a location.
+  - _Socio-economic marker_ - indicating a speaker's association with a socio-economic group or class, such as Middle Class. 
+  - _Hybrid dialect - indicating the speaker speaks using a dialect where two languages have come into contact_ - such as Denglish (German - Deutsch - and English) and Hinglish (Hindi and English, spoken in India).
+  - _Generational marker_ - indicating the speaker's association with a generation, belying their age range, such as Gen Z.
+
+* The number of individual accents identified has increased from 164 in the first version, to 235 in this one.
+* The number of relationships between individual accents, which indicate a co-occurrence between speaker-described accents, such as "German" and "England English", has increased from 297 in the first version, to 515 in this one.
