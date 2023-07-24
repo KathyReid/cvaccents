@@ -299,14 +299,14 @@ class AccentCollection:
 
         try:
             for accent in self.AccentDict.items():
-                print(accent)
-                print(accent[0])
+                #print(accent)
+                #print(accent[0])
 
                 for predetermined_accent in predetermined_accents_list:
 
                     if predetermined_accent == accent[1].name:
                         accent[1].updateStatus(status)
-                        print("changed ", accent[1], "status to ", status)
+                        #print("changed ", accent[1], "status to ", status)
                         # else do nothing - we don't want to update the predetermined_status of any other accents
 
             return True
