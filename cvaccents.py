@@ -16,6 +16,7 @@ Misc variables:
 
 import json  # used for exporting data
 import os  # used for file handling
+import sys # used to check PYTHONPATH
 
 
 class Accent:
@@ -436,11 +437,39 @@ class AccentCollection:
 
 
 class AccentEncoder(json.JSONEncoder):
+    
     def default(self, obj):
-        if isinstance(obj, Accent):
+
+        import inspect 
+        print('is object a Class?', inspect.isclass(obj))
+        print('a')
+        print('type of object is: ', type(obj))
+        print(obj.__class__.__name__)
+        print(obj.__class__.__qualname__)
+               
+        print('b')
+        print('does Accent match class name?', (obj.__class__.__name__ == 'Accent'))
+        print('c')
+        print('does Accent match class qualname?', (obj.__class__.__qualname__ == 'Accent'))
+        print('d')
+        print('does Accent match the type of the object?', (type(obj) == 'Accent'))
+        print('e')
+        print('object for encoding is: ', obj)
+        
+        print(isinstance(obj, Accent))
+        print(isinstance(obj, object))
+        
+        print('type of object is: ', type(obj))
+        print(obj.__class__.__name__)
+        print(obj.__class__.__qualname__)
+        
+
+        if (isinstance(obj, Accent)):
+
+            print ('breakpoint 1')
 
             # call out to a private method
-            # otherwise the encoder doesn't know how to handle the AccentDescripor object
+            # otherwise the encoder doesn't know how to handle the AccentDescriptor object
             accentDescriptors = AccentEncoder._encodeAccentDescriptor(obj._descriptors)
 
             data = {
@@ -453,14 +482,17 @@ class AccentEncoder(json.JSONEncoder):
             }
             return data
         else:
+            print ('breakpoint 2')
             type_name = obj.__class__.__name__
             raise TypeError(f"Unexpected type {type_name}")
 
         return json.JSONEncoder.default(self, obj)
 
+    
     def _encodeAccentDescriptor(descriptors):
         # descriptors should be a list of AccentDescriptor objects
         for descriptor in descriptors:
+            print ('descriptor is: ', descriptor)
             data = {}
             if isinstance(descriptor, AccentDescriptor):
                 data[descriptor._id] = {
