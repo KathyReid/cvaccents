@@ -90,16 +90,27 @@ jupyter notebook
 ## Citing this toolset 
 
 ```
-@Booklet{EasyChair:9678,
-  author = {Kathy Reid and Elizabeth T. Williams},
-  title = {Common Voice and Accent Choice: Data Contributors Self-Describe Their Spoken Accents in Diverse Ways},
-  howpublished = {EasyChair Preprint no. 9678},
-
-  year = {EasyChair, 2023}}
+@inproceedings{10.1145/3617694.3623258,
+author = {Reid, Kathy and Williams, Elizabeth T.},
+title = {Common Voice and Accent Choice: Data Contributors Self-Describe Their Spoken Accents in Diverse Ways},
+year = {2023},
+isbn = {9798400703812},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3617694.3623258},
+doi = {10.1145/3617694.3623258},
+abstract = {The use of machine learning (ML)-powered speech technologies has increased significantly in recent years&nbsp;[40, 56, 72]. The datasets used for training speech models often represent demographic features of the speaker – such as gender, age, and accent. These axes are frequently used to evaluate the training set and model for bias&nbsp;[52]. Here, we focus on how accent is represented in voice data due to the adverse consequences of accent bias. We perform document analysis on several voice datasets to identify how accents are currently represented. We then analyse and visualise speaker-described accents from Mozilla’s Common Voice (CV) v13 English dataset, forming an emergent taxonomy of accent descriptors. We repeat this process using the CV v13 Kiswahili dataset, demonstrating that the taxonomy has use beyond English. We find that accents are currently represented in ways that are geographically, and predominantly, nationally bound. While this pattern is also shown in speaker-described accents from CV, a more diverse set of descriptors is revealed. This work provides some early evidence for re-thinking how accents are represented in datasets intended for ML applications. Our tooling is open-sourced, and we invite further work that uses our taxonomy to assess accent bias in speech data and models.},
+booktitle = {Proceedings of the 3rd ACM Conference on Equity and Access in Algorithms, Mechanisms, and Optimization},
+articleno = {35},
+numpages = {10},
+keywords = {bias corpora, accent data, data visualization, bias, accent bias, metadata, datasets, dataset documentation, accent recognition, voice data, speech data},
+location = {Boston, MA, USA},
+series = {EAAMO '23}
+}
 
 ```
 
-[https://easychair.org/publications/preprint/gFLz](https://easychair.org/publications/preprint/gFLz)
+[[https://easychair.org/publications/preprint/gFLz](https://easychair.org/publications/preprint/gFLz](https://dl.acm.org/doi/10.1145/3617694.3623258))
 
 ## License 
 
