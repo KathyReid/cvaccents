@@ -109,8 +109,7 @@ series = {EAAMO '23}
 }
 
 ```
-
-[[https://easychair.org/publications/preprint/gFLz](https://easychair.org/publications/preprint/gFLz](https://dl.acm.org/doi/10.1145/3617694.3623258))
+[https://dl.acm.org/doi/10.1145/3617694.3623258](https://dl.acm.org/doi/10.1145/3617694.3623258)
 
 ## License 
 
